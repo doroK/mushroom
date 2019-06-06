@@ -227,6 +227,23 @@ class Viewer:
 
         self.polygon(center, angle, points, color)
 
+    def icon(self,  img_path, center, width=1, height=1):
+        """
+        Draw a icon on the screen.
+
+        Args:
+            img_path (str): path to the *.png imgfile;
+            center (np.ndarray): end point of the line;
+            width (int, 1): width of the icon;
+            height (int, 1): height of the icon;
+
+        """
+
+        img = pygame.image.load(img_path)
+        img = pygame.transform.scale(img,(int(width*self._ratio[0]),int(height*self._ratio[0])))
+        center_transformed = self._transform(center)
+        self._screen.blit(img , center_transformed)
+
     def background_image(self, img):
         """
         Use the given image as background for the window, rescaling it
